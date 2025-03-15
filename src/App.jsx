@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import { Chat } from "./components/Chat/Chat";
 
 function App() {
-  const [messages, setMessages] = useState(MESSAGES);
+  const [messages] = useState(MESSAGES);
 
   return (
    <div className={styles.App}>
