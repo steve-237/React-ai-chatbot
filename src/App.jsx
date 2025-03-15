@@ -4,7 +4,11 @@ import { Controls } from "./components/Controls/Controls";
 import styles from "./App.module.css";
 
 function App() {
-  const [messages] = useState(MESSAGES);
+  const [messages, setMessages] = useState([]);
+
+  function handleContentSend(content) {
+    setMessages((prevMessages) => [...prevMessages, { content,  role: 'user' }])
+  }
 
   return (
    <div className={styles.App}>
@@ -15,52 +19,9 @@ function App() {
     <div className={styles.ChatContainer}>
       <Chat messages={messages}/>
     </div>
-    <Controls/>
+    <Controls onSend={handleContentSend} />
    </div>
   )
 }
-
-const MESSAGES = [
-  {
-    role: 'user',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'assistent',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'user',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'assistent',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'user',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'assistent',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'user',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'assistent',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'user',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  },
-  {
-    role: 'assistent',
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus cum ducimus dolorum non aut possimus vero, itaque illum architecto veritatis reprehenderit saepe alias sapiente? Non tempore veniam repellendus accusamus."
-  }
-]
 
 export default App
