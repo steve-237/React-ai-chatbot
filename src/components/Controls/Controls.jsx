@@ -1,9 +1,16 @@
-import { useState } from "react";
-import TextareaAutosize from 'react-textarea-autosize';
+import { useEffect, useRef, useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Controls.module.css";
 
 export function Controls({ isDisabled = false, onSend }) {
+  const textareaRef = useRef(null);
   const [content, setContent] = useState("");
+
+  useEffect(() => {
+    if(!isDisabled) {
+      textareaRef.current.focus();
+    }
+  }, [isDisabled])
 
   function handleContentChange(event) {
     setContent(event.target.value);
@@ -11,15 +18,15 @@ export function Controls({ isDisabled = false, onSend }) {
 
   function handleContentSend() {
     if (content.length > 0) {
-        onSend(content);
-        setContent("");
+      onSend(content);
+      setContent("");
     }
   }
 
   function handleEnterPress(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        handleContentSend();
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleContentSend();
     }
   }
 
@@ -27,6 +34,7 @@ export function Controls({ isDisabled = false, onSend }) {
     <div className={styles.Controls}>
       <div className={styles.TextAreaContainer}>
         <TextareaAutosize
+          ref={textareaRef}
           className={styles.TextArea}
           placeholder="Message AI Chatbot"
           value={content}
@@ -37,7 +45,11 @@ export function Controls({ isDisabled = false, onSend }) {
           onKeyDown={handleEnterPress}
         />
       </div>
-      <button className={styles.Button} disabled={isDisabled} onClick={handleContentSend}>
+      <button
+        className={styles.Button}
+        disabled={isDisabled}
+        onClick={handleContentSend}
+      >
         <SendIcon />
       </button>
     </div>
