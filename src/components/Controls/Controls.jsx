@@ -16,7 +16,7 @@ export function Controls({ onSend }) {
   }
 
   function handleEnterPress(event) {
-    if (event.key === 'ENter' && !event.shiftKey) {
+    if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         handleContentSend();
     }
